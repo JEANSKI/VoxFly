@@ -4,7 +4,7 @@
  */
 package controlador;
 import modelo.JuegoModelo;
-import vista.LienzoJuego;
+import vista.VentanaJuego;
 import javax.swing.Timer;
 /**
  *
@@ -13,19 +13,19 @@ import javax.swing.Timer;
 public class JuegoControlador {
     
     private JuegoModelo modelo;
-    private LienzoJuego vista;
+    private VentanaJuego vista;
     private MicrofonoSensor microfono;
     private Timer timer;
     // Ajustar este número según la sensibilidad del micrófono de 30 a 50
     private static final double UMBRAL_SONIDO = 40.0; 
 
-    public JuegoControlador(JuegoModelo modelo, LienzoJuego vista) {
+    public JuegoControlador(JuegoModelo modelo, VentanaJuego vista) {
         this.modelo = modelo;
         this.vista = vista;
         this.microfono = new MicrofonoSensor();
         
         this.vista.setModelo(modelo);
-        // Bucle de juego a 30 milisegundos (aprox 30 FPS)
+        // Bucle de juego a 30 milisegundos pasra los 30 fps
         timer = new Timer(30, e -> bucleJuego());
     }
 
@@ -41,7 +41,7 @@ public class JuegoControlador {
                 modelo.getPajaro().saltar();
             }
             modelo.actualizar();
-            vista.repaint(); // Llama a la vista a repintarse
+            vista.repaint(); // Llama a la vista para repintarse
         } else {
             timer.stop();
             microfono.detener();
