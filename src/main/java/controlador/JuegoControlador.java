@@ -16,7 +16,7 @@ public class JuegoControlador {
     private VistaJuego vista;
     private MicrofonoSensor microfono;
     private Timer timer;
-    private static final double UMBRAL_SONIDO = 60.0; //Sensibilidad del microfono recom. 40-60
+    private static final double UMBRAL_SONIDO = 40.0; // sensibilidad del microfono recom 40 o 60
 
     public JuegoControlador(JuegoModelo modelo, VistaJuego vista) {
         this.modelo = modelo;
@@ -25,10 +25,10 @@ public class JuegoControlador {
         
         ((LienzoJuego) this.vista.panelLienzo).modelo = this.modelo;
         
-        this.vista.lblGameOver.setVisible(false); // Ocultar mensaje al inicio
+        this.vista.lblGameOver.setVisible(false); // se esconde el texto de perder al inicio
         this.vista.lblPuntaje.setText("Puntaje: 0");
 
-        timer = new Timer(30, e -> bucleJuego()); //30 se refiere a los fps
+        timer = new Timer(30, e -> bucleJuego()); // fps del juego en 30
     }
 
     public void iniciar() {
@@ -37,29 +37,30 @@ public class JuegoControlador {
     }
 
     private void bucleJuego() {
-        double volumen = Math.random() * 100; //se puede reemplazar Math.random() * 100; para probarlo
+        double volumen = microfono.obtenerNivelVolumen();
+        
+        // para ver en consola si me escucha bien el pc
         System.out.println("Nivel de voz detectado: " + volumen);
         
         if (!modelo.isGameOver()) {
-            // --- LÓGICA MIENTRAS ESTÁ JUGANDO ---
             if (volumen > UMBRAL_SONIDO) {
                 modelo.getPajaro().saltar();
             }
             modelo.actualizar();
             
-            // Actualizamos la vista
+            // actualizo el label de los puntos
             vista.lblPuntaje.setText("Puntaje: " + modelo.getPuntaje());
-            vista.panelLienzo.repaint(); 
+            vista.panelLienzo.repaint(); // repinta los dibujos
             
         } else {
-            // --- LOGICA CUANDO PIERDE ---
-            vista.lblGameOver.setVisible(true); // Muestra el letrero
-            vista.panelLienzo.repaint(); // Dibuja dónde chocó
+            // si se pierdie muestro el letrero
+            vista.lblGameOver.setVisible(true);
+            vista.panelLienzo.repaint();
             
-            // Si el jugador vuelve a hablar fuerte, se reinicia
+            // si hay ruido otra vez, se reinicia todo
             if (volumen > UMBRAL_SONIDO) {
-                modelo.reiniciar(); // Llama al método que se creo al final de juegomodelo
-                vista.lblGameOver.setVisible(false); // Oculta el letrero de perder
+                modelo.reiniciar();
+                vista.lblGameOver.setVisible(false); 
             }
         }
     }

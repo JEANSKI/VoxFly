@@ -9,7 +9,7 @@ import java.awt.Graphics;
  *
  * @author User
  */
-public class Obstaculo extends EntidadJuego {
+public class Obstaculo extends EntidadJuego { //se crea el obstaculo de color verde y se desplaza a -5 en el eje x
     private int velocidadX = -5;
 
     public Obstaculo(int x, int y, int ancho, int alto) {

@@ -10,36 +10,30 @@ import java.awt.Graphics;
  * @author User
  */
 public class Pajaro extends EntidadJuego {
+    
     private int velocidadY;
     private static final int GRAVEDAD = 2;
     private static final int FUERZA_SALTO = -15;
 
-    // Constructor completo
     public Pajaro(int x, int y, int ancho, int alto) {
         super(x, y, ancho, alto);
         this.velocidadY = 0;
     }
 
-    // Polimorfismo estático
+    // sobrecarga por si solo mandan x e y
     public Pajaro(int x, int y) {
-        this(x, y, 30, 30); // Tamaño por defecto
+        this(x, y, 30, 30); // le pongo 30x30 por defecto
     }
 
-@Override
+    @Override
     public void mover() {
         velocidadY += GRAVEDAD;
         y += velocidadY;
         
-        // Si toca el techo, no lo deja salir y lo empuja un poco abajo
+        // no dejo que se salga por el techo
         if (y < 0) { 
             y = 0; 
             velocidadY = 0; 
-        }
-        
-        // LIMITAMOS EL PISO
-        // serestamos el tamaño del pájaro
-        if (y > 550) {
-            y = 550;
         }
     }
 
@@ -47,7 +41,7 @@ public class Pajaro extends EntidadJuego {
         velocidadY = FUERZA_SALTO;
     }
 
-    @Override
+    @Override //pinta el pajaro al color deseado como un ovalo
     public void dibujar(Graphics g) {
         g.setColor(Color.YELLOW);
         g.fillOval(x, y, ancho, alto);
