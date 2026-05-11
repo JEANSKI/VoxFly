@@ -8,12 +8,12 @@ package vista;
  *
  * @author User
  */
-public class VentanaJuego extends javax.swing.JFrame {
+public class VistaJuego extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaJuego
+     * Creates new form VistaJuego
      */
-    public VentanaJuego() {
+    public VistaJuego() {
         initComponents();
     }
 
@@ -26,30 +26,48 @@ public class VentanaJuego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelLienzo = new javax.swing.JPanel();
+        panelLienzo = new vista.LienzoJuego();
+        lblPuntaje = new javax.swing.JLabel();
+        lblGameOver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panelLienzo.setPreferredSize(new java.awt.Dimension(800, 600));
+
+        lblPuntaje.setText("jLabel1");
+
+        lblGameOver.setText("JUEGO TERMINADO");
 
         javax.swing.GroupLayout panelLienzoLayout = new javax.swing.GroupLayout(panelLienzo);
         panelLienzo.setLayout(panelLienzoLayout);
         panelLienzoLayout.setHorizontalGroup(
             panelLienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(panelLienzoLayout.createSequentialGroup()
+                .addComponent(lblPuntaje)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(panelLienzoLayout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(lblGameOver)
+                .addContainerGap(552, Short.MAX_VALUE))
         );
         panelLienzoLayout.setVerticalGroup(
             panelLienzoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(panelLienzoLayout.createSequentialGroup()
+                .addComponent(lblPuntaje)
+                .addGap(118, 118, 118)
+                .addComponent(lblGameOver)
+                .addGap(0, 450, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelLienzo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelLienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelLienzo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelLienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -72,25 +90,27 @@ public class VentanaJuego extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaJuego().setVisible(true);
+                new VistaJuego().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel panelLienzo;
+    public javax.swing.JLabel lblGameOver;
+    public javax.swing.JLabel lblPuntaje;
+    public javax.swing.JPanel panelLienzo;
     // End of variables declaration//GEN-END:variables
 }

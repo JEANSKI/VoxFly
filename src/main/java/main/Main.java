@@ -4,26 +4,22 @@
  */
 package main;
 import modelo.JuegoModelo;
-import vista.VentanaJuego;
+import vista.VistaJuego;
 import controlador.JuegoControlador;
-import javax.swing.JFrame;
 /**
  *
  * @author User
  */
 public class Main {
     public static void main(String[] args) {
-        JFrame ventana = new JFrame("VoxFly - Juego Accesible por Voz");
-        VentanaJuego lienzo = new VentanaJuego();
-        
-        ventana.add(lienzo);
-        ventana.setSize(800, 600);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        VistaJuego ventana = new VistaJuego();
         ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
-
+        
         JuegoModelo modelo = new JuegoModelo();
-        JuegoControlador controlador = new JuegoControlador(modelo, lienzo);
+        
+        JuegoControlador controlador = new JuegoControlador(modelo, ventana);
+        
+        ventana.setVisible(true);
         controlador.iniciar();
     }
 }

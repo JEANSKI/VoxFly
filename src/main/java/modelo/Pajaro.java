@@ -25,14 +25,22 @@ public class Pajaro extends EntidadJuego {
         this(x, y, 30, 30); // Tamaño por defecto
     }
 
-    @Override
+@Override
     public void mover() {
         velocidadY += GRAVEDAD;
         y += velocidadY;
         
-        // Limites de pantalla
-        if (y > 600) y = 600;
-        if (y < 0) { y = 0; velocidadY = 0; }
+        // Si toca el techo, no lo deja salir y lo empuja un poco abajo
+        if (y < 0) { 
+            y = 0; 
+            velocidadY = 0; 
+        }
+        
+        // LIMITAMOS EL PISO
+        // serestamos el tamaño del pájaro
+        if (y > 550) {
+            y = 550;
+        }
     }
 
     public void saltar() {
